@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.content.Intent
 
 class TextSizeActivity : AppCompatActivity() {
 
@@ -23,8 +25,10 @@ class TextSizeActivity : AppCompatActivity() {
         with (findViewById(R.id.textSizeSelectorRecyclerView) as RecyclerView) {
 
             // TODO Step 2: Pass selected value back to activity that launched TextSizeActivity
-            adapter = TextSizeAdapter(textSizes){
+            adapter = TextSizeAdapter(textSizes){ size ->
+                setResult(RESULT_OK, Intent().putExtra("RESULT", size.toFloat()))
 
+                finish()
             }
             layoutManager = LinearLayoutManager(this@TextSizeActivity)
         }
